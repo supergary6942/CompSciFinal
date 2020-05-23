@@ -18,9 +18,9 @@ class Player(pg.sprite.Sprite):
         #self.vel = vec(0, 0)
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] or keys[pg.K_a]:
-            self.vel.x -= PLAYER_SPEED
+            self.vel.x = -PLAYER_SPEED
         if keys[pg.K_RIGHT] or keys[pg.K_d]:
-            self.vel.x += PLAYER_SPEED
+            self.vel.x = PLAYER_SPEED
         if keys[pg.K_UP] or keys[pg.K_w]:
             self.vel.y -= PLAYER_SPEED
         if keys[pg.K_DOWN] or keys[pg.K_s]:
@@ -56,7 +56,7 @@ class Player(pg.sprite.Sprite):
         self.collide_with_walls('x')
         self.rect.y = self.pos.y
         self.collide_with_walls('y')
-        self.vel.y+=5
+        self.vel.y+=5 #this is gravity
 
 
 class Wall(pg.sprite.Sprite):
