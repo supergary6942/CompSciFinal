@@ -30,7 +30,7 @@ class Player(pg.sprite.Sprite):
         if keys[pg.K_UP] or keys[pg.K_w]:
             self.vel.y -= JUMP_SPEED
         if keys[pg.K_DOWN] or keys[pg.K_s]:
-            self.vel.y += JUMP_SPEED
+            self.vel.x = 0
 
 
 
