@@ -15,6 +15,8 @@ class Player(pg.sprite.Sprite):
         self.flying = False
 
 
+
+
     def get_keys(self):
         #self.vel = vec(0, 0)
         keys = pg.key.get_pressed()
@@ -57,6 +59,13 @@ class Player(pg.sprite.Sprite):
                 self.vel.y = 0
                 self.rect.y = self.pos.y
 
+    def collide_with_flags(self):
+        hits = pg.sprite.collide_rect(self, self.game.flag)
+        if hits:
+            self.game.win()
+            #print("x: ",self.pos.x," y: ",self.pos.y)
+
+
 
     def update(self):
         if not self.flying:
@@ -66,6 +75,7 @@ class Player(pg.sprite.Sprite):
         self.collide_with_walls('x')
         self.rect.y = self.pos.y
         self.collide_with_walls('y')
+        self.collide_with_flags()
         self.vel.y+=5 #this is gravity
 
 
@@ -81,3 +91,21 @@ class Wall(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
+
+
+class Flag(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.Surface((TILESIZE, TILESIZE))
+        self.image.fill(RED)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
+
+class Win_Sprite(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.image = game.Win_Sprite_img

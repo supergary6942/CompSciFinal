@@ -18,6 +18,7 @@ class Game:
         img_folder = path.join(tilebasedgame, 'img')
         self.map = Map(path.join(tilebasedgame, 'map.txt'))
         self.player_img = pg.image.load(path.join(img_folder, PLAYER_IMG)).convert_alpha()
+        self.Win_Sprite_img = pg.image.load(path.join(img_folder, WIN_SPRITE_IMG)).convert_alpha()
 
     def new(self):
         # initialize all variables and do all the setup for a new game
@@ -29,6 +30,8 @@ class Game:
                     Wall(self, col, row)
                 if tile == 'P':
                     self.player = Player(self, col, row)
+                if tile == 'F':
+                    self.flag = Flag(self, col, row)
         self.camera = Camera(self.map.width, self.map.height)
 
     def run(self):
@@ -62,6 +65,13 @@ class Game:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         pg.display.flip()
 
+    def win(self):
+        self.winning = Win_Sprite(self, 400, 900)
+       #myfont = pg.font.SysFont('Comic Sans MS', 30)
+       #textsurface = myfont.render('You Win', False, (255, 255, 255))
+       #self.screen.blit(textsurface,(int(self.player.pos.x), int(self.player.pos.y)),pg.Rect(0,0,200,200))
+       #pg.display.update()
+
     def events(self):
         # catch all events here
         for event in pg.event.get():
@@ -76,6 +86,8 @@ class Game:
 
     def show_go_screen(self):
         pass
+
+
 
 # create the game object
 g = Game()

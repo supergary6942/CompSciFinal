@@ -23,3 +23,4 @@ PLAYER_SPEED = 250
 JUMP_SPEED = 200
 PLAYER_ROT_SPEED = 250
 PLAYER_IMG = 'knight_f_idle_anim_f0.png'
+WIN_SPRITE_IMG = 'winning.png'
