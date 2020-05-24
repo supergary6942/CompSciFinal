@@ -12,6 +12,7 @@ class Player(pg.sprite.Sprite):
         self.vel = vec(0, 0)
         self.pos = vec(x, y) * TILESIZE
         self.rot = 0
+        self.flying = False
 
 
     def get_keys(self):
@@ -29,6 +30,7 @@ class Player(pg.sprite.Sprite):
                 self.vel.x = PLAYER_SPEED
         if keys[pg.K_UP] or keys[pg.K_w]:
             self.vel.y -= JUMP_SPEED
+            self.flying = True
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vel.x = 0
 
@@ -48,6 +50,7 @@ class Player(pg.sprite.Sprite):
             hits = pg.sprite.spritecollide(self, self.game.walls, False)
             if hits:
                 if self.vel.y > 0:
+                    self.flying = False
                     self.pos.y = hits[0].rect.top - self.rect.height
                 if self.vel.y <  0:
                     self.pos.y = hits[0].rect.bottom
@@ -56,7 +59,8 @@ class Player(pg.sprite.Sprite):
 
 
     def update(self):
-        self.get_keys()
+        if not self.flying:
+            self.get_keys()
         self.pos += self.vel * self.game.dt
         self.rect.x = self.pos.x
         self.collide_with_walls('x')
