@@ -108,4 +108,13 @@ class Flag(pg.sprite.Sprite):
 
 class Win_Sprite(pg.sprite.Sprite):
     def __init__(self, game, x, y):
+        self.groups = game.all_sprites
+        pg.sprite.Sprite.__init__(self, self.groups)
         self.image = game.Win_Sprite_img
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.pos = vec(x, y)
+        self.rect.x = x
+        self.rect.y = y
+        print("win sprite created")

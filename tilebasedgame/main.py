@@ -66,7 +66,8 @@ class Game:
         pg.display.flip()
 
     def win(self):
-        self.winning = Win_Sprite(self, 400, 900)
+        print("you won")
+        self.winning = Win_Sprite(self, 300, 800)
        #myfont = pg.font.SysFont('Comic Sans MS', 30)
        #textsurface = myfont.render('You Win', False, (255, 255, 255))
        #self.screen.blit(textsurface,(int(self.player.pos.x), int(self.player.pos.y)),pg.Rect(0,0,200,200))
