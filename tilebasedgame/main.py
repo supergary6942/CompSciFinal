@@ -5,6 +5,7 @@ from settings import *
 from sprites import *
 from tilemap import *
 
+
 class Game:
     def __init__(self):
         pg.init()
@@ -43,6 +44,8 @@ class Game:
             self.update()
             self.draw()
 
+
+
     def quit(self):
         pg.quit()
         sys.exit()
@@ -67,7 +70,10 @@ class Game:
 
     def win(self):
         print("you won")
-        self.winning = Win_Sprite(self, 300, 800)
+        pos = self.player.pos
+        for sprite in self.all_sprites:
+            self.all_sprites.remove(sprite)
+        self.winning = Win_Sprite(self, pos.x,pos.y)
        #myfont = pg.font.SysFont('Comic Sans MS', 30)
        #textsurface = myfont.render('You Win', False, (255, 255, 255))
        #self.screen.blit(textsurface,(int(self.player.pos.x), int(self.player.pos.y)),pg.Rect(0,0,200,200))

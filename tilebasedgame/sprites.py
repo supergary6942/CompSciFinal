@@ -117,4 +117,4 @@ class Win_Sprite(pg.sprite.Sprite):
         self.pos = vec(x, y)
         self.rect.x = x
         self.rect.y = y
-        print("win sprite created")
+
