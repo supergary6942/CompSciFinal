@@ -73,7 +73,7 @@ class Game:
         pos = self.player.pos
         for sprite in self.all_sprites:
             self.all_sprites.remove(sprite)
-        self.winning = Win_Sprite(self, pos.x,pos.y)
+        self.winning = Win_Sprite(self, 375-self.camera.camera.x,300-self.camera.camera.y)
        #myfont = pg.font.SysFont('Comic Sans MS', 30)
        #textsurface = myfont.render('You Win', False, (255, 255, 255))
        #self.screen.blit(textsurface,(int(self.player.pos.x), int(self.player.pos.y)),pg.Rect(0,0,200,200))
